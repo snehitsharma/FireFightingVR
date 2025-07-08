@@ -788,6 +788,52 @@
             setInterval(() => {
                 // Uncomment when images are added: nextImage();
             }, 5000);
+
+            // Random video player
+            const videoClips = [
+    'assets/demo-1.mp4',
+    'assets/demo-2.mp4', 
+    'assets/demo-3.mp4',
+    'assets/demo-4.mp4',
+    'assets/demo-5.mp4',
+    'assets/demo-6.mp4',
+    'assets/demo-7.mp4',
+    'assets/demo-8.mp4'
+];
+
+let lastVideoIndex = -1; // Track last video
+
+function loadRandomVideo() {
+    let randomIndex = Math.floor(Math.random() * videoClips.length);
+    
+    // If we got the same video as last time, just pick the next one
+    if (randomIndex === lastVideoIndex) {
+        randomIndex = (randomIndex + 1) % videoClips.length;
+    }
+    
+    lastVideoIndex = randomIndex; // Remember this video
+    
+    const videoElement = document.getElementById('randomVideo');
+    const sourceElement = document.getElementById('videoSource');
+    
+    sourceElement.src = videoClips[randomIndex];
+    videoElement.load();
+    videoElement.play();
+}
+
+// Load random video when page loads
+window.addEventListener('load', loadRandomVideo);
+
+// Change to next random video when current one ends
+document.addEventListener('DOMContentLoaded', function() {
+    const videoElement = document.getElementById('randomVideo');
+    if (videoElement) {
+        videoElement.addEventListener('ended', loadRandomVideo);
+    }
+});
+
+// Optional: Change video every 10 seconds
+setInterval(loadRandomVideo, 6000);
         </script>
     </style>
 </head>
@@ -971,8 +1017,8 @@
                     
                     <!-- VR Training Demo Video Placeholder -->
                     <div class="media-placeholder video-placeholder">
-                        <video autoplay muted loop style="width: 100%; border-radius: 15px; max-height: 300px;">
-                            <source src="assets/demo-video.mp4" type="video/mp4">
+                        <video id="randomVideo" autoplay muted loop style="width: 100%; border-radius: 15px; max-height: 300px;">
+                            <source id="videoSource" src="" type="video/mp4">
                             <!-- Fallback for browsers that don't support video -->
                             <div class="media-placeholder-content">
                                 <span class="placeholder-icon">🎥</span>
