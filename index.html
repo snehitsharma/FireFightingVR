@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>VR Safety Training - Complete Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0c1426 0%, #1a2332 50%, #2d3748 100%);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        .company-header {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+        }
+        
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+            transition: all 0.3s ease;
+        }
+        
+        .company-logo:hover {
+            background: rgba(78,205,196,0.2);
+            transform: scale(1.05);
+        }
+        
+        .logo-placeholder {
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+        
+        .company-website {
+            background: rgba(0,0,0,0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .company-website:hover {
+            background: rgba(78,205,196,0.2);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .media-placeholder {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed #4ecdc4;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .media-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(78,205,196,0.1), rgba(255,107,107,0.1));
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+        
+        .media-placeholder-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .placeholder-icon {
+            font-size: 4rem;
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            display: block;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .video-placeholder {
+            background: linear-gradient(45deg, rgba(255,107,107,0.2), rgba(78,205,196,0.2));
+            border: 3px solid #ff6b6b;
+        }
+        
+        .video-placeholder .placeholder-icon {
+            color: #ff6b6b;
+        }
+        
+        .image-carousel {
+            position: relative;
+            max-width: 100%;
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .carousel-container {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .carousel-nav:hover {
+            background: rgba(78,205,196,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .carousel-prev {
+            left: 15px;
+        }
+        
+        .carousel-next {
+            right: 15px;
+        }
+        
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .carousel-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-indicator.active {
+            background: #4ecdc4;
+            transform: scale(1.2);
+        }
+        
+        .multi-image-placeholder {
+            background: rgba(255,255,255,0.1);
+            border: 2px dashed #4ecdc4;
+            border-radius: 15px;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .multi-image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 100%;
+            max-width: 600px;
+        }
+        
+        .image-slot {
+            aspect-ratio: 16/9;
+            background: rgba(78,205,196,0.2);
+            border: 2px dashed #4ecdc4;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .image-slot:hover {
+            background: rgba(78,205,196,0.3);
+            transform: translateY(-5px);
+        }
+        
+        .image-slot .slot-icon {
+            font-size: 2rem;
+            color: #4ecdc4;
+            margin-bottom: 10px;
+        }
+        
+        .image-slot .slot-label {
+            font-size: 0.9rem;
+            color: #96ceb4;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .slide {
+            min-height: 100vh;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+            scroll-snap-align: start;
+        }
+        
+
+        
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.3); }
+        }
+        
+        h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #4ecdc4;
+            border-bottom: 3px solid #4ecdc4;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #ff6b6b;
+        }
+        
+        h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            color: #ffd93d;
+        }
+        
+        p, li {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #96ceb4;
+            margin-bottom: 30px;
+        }
+        
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .hero-stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .hero-stat:hover {
+            transform: translateY(-5px);
+        }
+        
+        .hero-stat .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4ecdc4;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .hero-stat .label {
+            font-size: 1rem;
+            color: #96ceb4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.7s ease;
+        }
+        
+        .feature-card:hover::before {
+            left: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+        
+        .highlight-box {
+            background: rgba(255,255,255,0.1);
+            border-left: 5px solid #4ecdc4;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .cta-box {
+            background: linear-gradient(45deg, rgba(255,107,107,0.3), rgba(78,205,196,0.3));
+            border: 2px solid #4ecdc4;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(78, 205, 196, 0.1), transparent);
+            animation: rotate 6s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border: none;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(78, 205, 196, 0.3);
+        }
+        
+        .process-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .process-step {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+            margin: 15px;
+            position: relative;
+        }
+        
+        .process-step::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 30%;
+            font-size: 2rem;
+            color: #4ecdc4;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .process-step:last-child::after {
+            display: none;
+        }
+        
+        .step-circle {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: #0c1426;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
+        }
+        
+        .comparison-table {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 30px 0;
+        }
+        
+        .table-header {
+            background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+            color: #0c1426;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        
+        .table-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .table-cell {
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .table-cell:last-child {
+            border-right: none;
+        }
+        
+        .table-cell.highlight {
+            background: rgba(78, 205, 196, 0.2);
+            font-weight: bold;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .spec-card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #4ecdc4;
+        }
+        
+        .spec-title {
+            color: #4ecdc4;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .roi-visualization {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .roi-chart {
+            display: flex;
+            justify-content: space-around;
+            align-items: end;
+            height: 200px;
+            margin: 30px 0;
+        }
+        
+        .roi-bar {
+            width: 80px;
+            background: linear-gradient(to top, #ff6b6b, #4ecdc4);
+            border-radius: 5px 5px 0 0;
+            position: relative;
+            animation: growUp 2s ease-out;
+        }
+        
+        @keyframes growUp {
+            from { height: 0; }
+            to { height: var(--height); }
+        }
+        
+        .roi-bar.traditional { --height: 150px; height: 150px; }
+        .roi-bar.vr { --height: 40px; height: 40px; }
+        
+        .roi-label {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.9rem;
+            width: 100px;
+            text-align: center;
+        }
+        
+        .roi-value {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            color: white;
+            background: rgba(0,0,0,0.7);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4ecdc4, #45b7d1, #96ceb4);
+            border-radius: 4px;
+        }
+        
+        .timeline-items {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .timeline-item {
+            background: #0c1426;
+            border: 4px solid #4ecdc4;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            position: relative;
+            animation: pulse-ring 3s infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(78, 205, 196, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0); }
+        }
+        
+        .timeline-content {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 150px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .contact-card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        @media (max-width: 768px) {
+            .slide {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .process-flow {
+                flex-direction: column;
+            }
+            
+            .process-step::after {
+                content: '↓';
+                right: 50%;
+                top: 100%;
+                transform: translateX(50%);
+            }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .table-cell {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+            
+            .company-header {
+                top: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+            
+            .company-logo {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .logo-placeholder {
+                font-size: 1.2rem;
+            }
+            
+            .company-website {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+        </style>
+        <script>
+            let currentImageIndex = 0;
+            const totalImages = 3;
+            
+            function nextImage() {
+                currentImageIndex = (currentImageIndex + 1) % totalImages;
+                updateCarousel();
+            }
+            
+            function previousImage() {
+                currentImageIndex = (currentImageIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+            }
+            
+            function updateCarousel() {
+                // Update indicators
+                const indicators = document.querySelectorAll('.carousel-indicator');
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentImageIndex);
+                });
+                
+                
+                const container = document.querySelector('.carousel-container');
+                container.style.transform = `translateX(-${currentImageIndex * 100}%)`;
+            }
+            
+            // Auto-advance carousel every 5 seconds (when images are present)
+            setInterval(() => {
+                // Uncomment when images are added: nextImage();
+            }, 5000);
+        </script>
+    </style>
+</head>
+<body>
+    <!-- Company Header with Logo and Website -->
+    <div class="company-header">
+        <div class="company-logo">
+            <!-- Replace this placeholder with your actual logo -->
+            
+            <img src="assets/logo.png" alt="Company Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+        </div>
+        <a href="https://www.quantile-corp.com" target="_blank" class="company-website">
+            www.quantile-corp.com
+        </a>
+    </div>
+
+    <div class="presentation-container">
+        
+        <!-- Slide 1: Title -->
+        <div class="slide" id="slide-1">
+            <div class="hero-section">
+                <h1>QUANTILE CORP</h1>
+                <h1 style="margin-top: -20px; margin-bottom: 30px;">VR SAFETY TRAINING</h1>
+                <p class="hero-subtitle">Enhancing Workplace Safety: Emergency Preparedness Training</p>
+                <p style="font-size: 1.1rem; color: #96ceb4; margin-top: 20px;">
+                    Proactive safety measures are crucial for protecting lives and assets within any organization. 
+                    Workplace fires alone cost billions annually, and proper emergency training can significantly reduce incident-related injuries.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="number">200+</span>
+                        <span class="label">Employees Trained</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">75%</span>
+                        <span class="label">Cost Reduction</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">90%</span>
+                        <span class="label">Safer Training</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="number">24/7</span>
+                        <span class="label">Training Available</span>
+                    </div>
+                </div>
+                
+                <div class="highlight-box">
+                    <p style="text-align: center; font-size: 1.3rem;">
+                        <strong>Meta Quest 2 & 3 Compatible</strong> • 
+                        <strong>Multilingual Support (English, Spanish, French, German, Japanese, Hindi, Arabic, Chinese)</strong> • 
+                        <strong>Global Enterprise Solution</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Imperative for Emergency Preparedness -->
+        <div class="slide" id="slide-2">
+            <h2>The Imperative for Emergency Preparedness</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">⚖️</span>
+                    <h4>Legal Compliance</h4>
+                    <p>Safety regulations mandate comprehensive Emergency Action Plans (EAPs) to ensure a safe working environment for all employees</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">👥</span>
+                    <h4>Personnel Safety</h4>
+                    <p>Ensuring safe and efficient egress for all employees is paramount, prioritizing human life above all else</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🏢</span>
+                    <h4>Business Continuity</h4>
+                    <p>Minimizing disruption to operations and protecting critical assets is vital for long-term organizational resilience</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🚨</span>
+                    <h4>Response Gaps</h4>
+                    <p>With municipal fire department response times averaging 5-8 minutes, internal preparedness is a critical first line of defense</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">💰</span>
+                    <h4>Cost Reduction</h4>
+                    <p>Effective emergency training reduces insurance premiums, potential lawsuits, and costly workplace incidents by up to 60%</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h4>Training Effectiveness</h4>
+                    <p>VR-based emergency training provides consistent, repeatable scenarios that traditional drills cannot safely replicate</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box">
+                <h3>Emergency Response Team (ERT) Critical Role:</h3>
+                <div class="two-column">
+                    <div>
+                        <ul>
+                            <li><strong>First Response:</strong> Initial assessment within 90 seconds of incident</li>
+                            <li><strong>Team Size:</strong> 10-15% of total workforce trained as ERT members</li>
+                            <li><strong>Training:</strong> Over 40 hours covering First Aid, CPR, and Fire Extinguisher use</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Coordination:</strong> Primary liaison with municipal emergency services</li>
+                            <li><strong>PASS Method:</strong> Pull, Aim, Squeeze, Sweep firefighting technique</li>
+                            <li><strong>Equipment:</strong> ABC, CO2, and K-type extinguisher expertise</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Solution Overview -->
+        <div class="slide" id="slide-3">
+            <h2>Our VR Training Solution</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Module 1A: Emergency Evacuation</h3>
+                    <div class="feature-card">
+                        <span class="feature-icon">🏃‍♂️</span>
+                        <ul style="text-align: left;">
+                            <li><strong>Target Users:</strong> All employees (200+ workers)</li>
+                            <li><strong>Scenario:</strong> Factory fire with multiple escape routes</li>
+                            <li><strong>Environment:</strong> Realistic facility models</li>
+                            <li><strong>Features:</strong> emergency exits with optimal routing</li>
+                            <li><strong>Training:</strong> Emergency stop procedures & evacuation</li>
+                            <li><strong>Analytics:</strong> Real-time performance tracking</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- VR Training Screenshots with Navigation -->
+                    <div class="image-carousel">
+                        <div class="carousel-container">
+                    <div class="carousel-slide">
+                        <img src="assets/image1.jpeg" alt="Factory Environment" style="width: 100%; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/image2.jpeg" alt="Emergency Scenario" style="width: 100%; border-radius: 15px;">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="assets/image3.jpeg" alt="Evacuation Training" style="width: 100%; border-radius: 15px;">
+                    </div>
+                    </div>
+                        
+                        <!-- Navigation arrows for when images are added -->
+                        <button class="carousel-nav carousel-prev" onclick="previousImage()">‹</button>
+                        <button class="carousel-nav carousel-next" onclick="nextImage()">›</button>
+                        
+                        <!-- Indicators for image navigation -->
+                        <div class="carousel-indicators">
+                            <div class="carousel-indicator active"></div>
+                            <div class="carousel-indicator"></div>
+                            <div class="carousel-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Module 1B: Firefighting Training</h3>
+                    <div class="feature-card">
+                        <span class="feature-icon">🔥</span>
+                        <ul style="text-align: left;">
+                            <li><strong>Target Users:</strong> Emergency Response Team (ERT)</li>
+                            <li><strong>Scenario:</strong> Active fire suppression operations</li>
+                            <li><strong>Training:</strong> Fire classification (Class C & D)</li>
+                            <li><strong>Equipment:</strong> Proper extinguisher selection & operation</li>
+                            <li><strong>Safety:</strong> Hands-on simulation without real fire risks</li>
+                            <li><strong>Certification:</strong> Performance-based skill validation</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- VR Training Demo Video Placeholder -->
+                    <div class="media-placeholder video-placeholder">
+                        <video autoplay muted loop style="width: 100%; border-radius: 15px; max-height: 300px;">
+                            <source src="assets/demo-video.mp4" type="video/mp4">
+                            <!-- Fallback for browsers that don't support video -->
+                            <div class="media-placeholder-content">
+                                <span class="placeholder-icon">🎥</span>
+                                <h4>VR Training Demo</h4>
+                                <p><strong>Video not supported in this browser</strong></p>
+                            </div>
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cta-box">
+                <div class="cta-content">
+                    <h3>Complete VR Emergency Training Solution</h3>
+                    <p>Comprehensive safety training for industrial facilities covering both evacuation and firefighting scenarios</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Technology Features -->
+        <div class="slide" id="slide-4">
+            <h2>Advanced VR Technology Features</h2>
+            
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🥽</span>
+                    <h4>VR Hardware Compatibility</h4>
+                    <p>Meta Quest 2 & Quest 3 support<br>Industry-standard equipment<br>Standalone operation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h4>Multilingual Interface</h4>
+                    <p>Global language support<br>English, Spanish, French, German, Japanese, Hindi, Arabic, Chinese<br>Audio and text localization</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🏭</span>
+                    <h4>Realistic 3D Environments</h4>
+                    <p>Photorealistic factory modeling<br>accurate facility simulation<br>Accurate safety equipment placement</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🎮</span>
+                    <h4>Interactive Training Elements</h4>
+                    <p>Emergency buttons & alarms<br>Fire extinguisher operation<br>Evacuation route navigation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h4>Performance Analytics</h4>
+                    <p>Real-time progress tracking<br>Detailed performance reports<br>Compliance documentation</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h4>Flexible Training Modes</h4>
+                    <p>Practice mode with guidance<br>Testing mode for certification<br>Custom scenario creation</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Emergency Evacuation Details -->
+        <div class="slide" id="slide-5">
+            <h2>Module 1A: Emergency Evacuation Training</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Training Process Flow:</h3>
+                    <div class="process-flow" style="flex-direction: column;">
+                        <div class="process-step">
+                            <div class="step-circle">1</div>
+                            <h4>Random Start Position</h4>
+                            <p>5 different starting locations throughout factory</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">2</div>
+                            <h4>Emergency Detection</h4>
+                            <p>Fire alarm activation, security guard alerts</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">3</div>
+                            <h4>Emergency Stop Procedure</h4>
+                            <p>Hit emergency stop button before evacuation</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">4</div>
+                            <h4>Safe Evacuation</h4>
+                            <p>Navigate to nearest exit and assembly area</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Key Technical Features:</h3>
+                    <div class="tech-specs">
+                        <div class="spec-card">
+                            <div class="spec-title">Factory Layout</div>
+                            <p>Accurate facility models with realistic machinery placement</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">4 Exit Routes</div>
+                            <p>Main entrance, Pinion Line, Rack Line, Emergency Exit</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Fire Scenarios</div>
+                            <p>Distribution Box (Class C) or Buffing Machine (Class D) fires</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Progressive Damage</div>
+                            <p>Visual fire progression simulation (0%, 50%, 100%)</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">NPC Interactions</div>
+                            <p>ERT members and security guards for realistic scenarios</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Performance Tracking</div>
+                            <p>Timer, route efficiency, and completion analytics</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>Training Modes Available:</h4>
+                        <p><strong>Practice Mode:</strong> Guided arrows show optimal evacuation routes</p>
+                        <p><strong>Test Mode:</strong> No visual aids, timed performance evaluation with certification</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Firefighting Details -->
+        <div class="slide" id="slide-6">
+            <h2>Module 1B: Firefighting Training</h2>
+            
+            <div class="two-column">
+                <div>
+                    <h3>Fire Classification Training:</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">⚡</span>
+                            <h4>Class C Fire</h4>
+                            <p><strong>Electrical Equipment</strong><br>Distribution Box scenarios<br>Live electrical hazards</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <span class="feature-icon">⭐</span>
+                            <h4>Class D Fire</h4>
+                            <p><strong>Combustible Metals</strong><br>Buffing Machine scenarios<br>Metal dust ignition</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Extinguisher Training:</h3>
+                    <div class="tech-specs">
+                        <div class="spec-card">
+                            <div class="spec-title">CO2 Extinguishers</div>
+                            <p>Class B & C fires - electrical and liquid fires</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Foam Extinguishers</div>
+                            <p>Class A & B fires - solid and liquid combustibles</p>
+                        </div>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Dry Powder</div>
+                            <p>Class A, B, C & D fires - universal application (primary use)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>4-Step Fire Suppression Process:</h3>
+                    <div class="process-flow" style="flex-direction: column;">
+                        <div class="process-step">
+                            <div class="step-circle">P</div>
+                            <h4>Pull the Pin</h4>
+                            <p>Remove safety pin with right hand controller trigger</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">A</div>
+                            <h4>Aim at Base</h4>
+                            <p>Point nozzle at base of fire, not at flames</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">S</div>
+                            <h4>Squeeze Handle</h4>
+                            <p>Use left controller to activate extinguisher spray</p>
+                        </div>
+                        <div class="process-step">
+                            <div class="step-circle">S</div>
+                            <h4>Sweep Side to Side</h4>
+                            <p>Move nozzle across fire base systematically</p>
+                        </div>
+                    </div>
+                    
+                    <div class="highlight-box">
+                        <h4>Interactive VR Training:</h4>
+                        <p><strong>Dual Controller Operation:</strong> Both VR controllers required for realistic fire extinguisher operation</p>
+                        <p><strong>Performance Tracking:</strong> 30-second timer with success/failure feedback and scoring</p>
+                        <p><strong>PASS Method:</strong> Pull, Aim, Squeeze, Sweep - industry standard firefighting technique</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Measurable Benefits -->
