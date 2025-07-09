@@ -34,7 +34,7 @@
             width: 80px;
             height: 80px;
             
-            border-radius: 50%;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -773,77 +773,66 @@
             }
             
             function updateCarousel() {
-                // Update indicators
                 const indicators = document.querySelectorAll('.carousel-indicator');
                 indicators.forEach((indicator, index) => {
                     indicator.classList.toggle('active', index === currentImageIndex);
                 });
                 
-                
                 const container = document.querySelector('.carousel-container');
                 container.style.transform = `translateX(-${currentImageIndex * 100}%)`;
             }
             
-            // Auto-advance carousel every 5 seconds (when images are present)
             setInterval(() => {
                 // Uncomment when images are added: nextImage();
             }, 5000);
 
-            // Random video player
             const videoClips = [
-    'assets/demo-1.mp4',
-    'assets/demo-2.mp4', 
-    'assets/demo-3.mp4',
-    'assets/demo-4.mp4',
-    'assets/demo-5.mp4',
-    'assets/demo-6.mp4',
-    'assets/demo-7.mp4',
-    'assets/demo-8.mp4'
-];
+                'assets/demo-1.mp4',
+                'assets/demo-2.mp4', 
+                'assets/demo-3.mp4',
+                'assets/demo-4.mp4',
+                'assets/demo-5.mp4',
+                'assets/demo-6.mp4',
+                'assets/demo-7.mp4',
+                'assets/demo-8.mp4'
+            ];
 
-let lastVideoIndex = -1; // Track last video
+            let lastVideoIndex = -1;
 
-function loadRandomVideo() {
-    let randomIndex = Math.floor(Math.random() * videoClips.length);
-    
-    // If we got the same video as last time, just pick the next one
-    if (randomIndex === lastVideoIndex) {
-        randomIndex = (randomIndex + 1) % videoClips.length;
-    }
-    
-    lastVideoIndex = randomIndex; // Remember this video
-    
-    const videoElement = document.getElementById('randomVideo');
-    const sourceElement = document.getElementById('videoSource');
-    
-    sourceElement.src = videoClips[randomIndex];
-    videoElement.load();
-    videoElement.play();
-}
+            function loadRandomVideo() {
+                let randomIndex = Math.floor(Math.random() * videoClips.length);
+                
+                if (randomIndex === lastVideoIndex) {
+                    randomIndex = (randomIndex + 1) % videoClips.length;
+                }
+                
+                lastVideoIndex = randomIndex;
+                
+                const videoElement = document.getElementById('randomVideo');
+                const sourceElement = document.getElementById('videoSource');
+                
+                sourceElement.src = videoClips[randomIndex];
+                videoElement.load();
+                videoElement.play();
+            }
 
-// Load random video when page loads
-window.addEventListener('load', loadRandomVideo);
+            window.addEventListener('load', loadRandomVideo);
 
-// Change to next random video when current one ends
-document.addEventListener('DOMContentLoaded', function() {
-    const videoElement = document.getElementById('randomVideo');
-    if (videoElement) {
-        videoElement.addEventListener('ended', loadRandomVideo);
-    }
-});
+            document.addEventListener('DOMContentLoaded', function() {
+                const videoElement = document.getElementById('randomVideo');
+                if (videoElement) {
+                    videoElement.addEventListener('ended', loadRandomVideo);
+                }
+            });
 
-// Optional: Change video every 10 seconds
-setInterval(loadRandomVideo, 6000);
+            setInterval(loadRandomVideo, 6000);
         </script>
     </style>
 </head>
 <body>
-    <!-- Company Header with Logo and Website -->
     <div class="company-header">
         <div class="company-logo">
-            <!-- Replace this placeholder with your actual logo -->
-            
-            <img src="assets/logo.png" alt="Company Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+            <img src="assets/logo.png" alt="Company Logo" style="width: 100%; height: 100%; object-fit: contain; border-radius: 15px;">
         </div>
         <a href="https://www.quantile-corp.com" target="_blank" class="company-website">
             www.quantile-corp.com
@@ -852,7 +841,6 @@ setInterval(loadRandomVideo, 6000);
 
     <div class="presentation-container">
         
-        <!-- Slide 1: Title -->
         <div class="slide" id="slide-1">
             <div class="hero-section">
                 <h1>QUANTILE CORP</h1>
@@ -884,15 +872,14 @@ setInterval(loadRandomVideo, 6000);
                 
                 <div class="highlight-box">
                     <p style="text-align: center; font-size: 1.3rem;">
-                        <strong>Meta Quest 2 & 3 Compatible</strong> • 
-                        <strong>Multilingual Support (English, Spanish, French, German, Japanese, Hindi, Arabic, Chinese)</strong> • 
+                        <strong>Meta Quest 3S & Quest 3 Compatible</strong> • 
+                        <strong>Multilingual Support</strong> • 
                         <strong>Global Enterprise Solution</strong>
                     </p>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 2: The Imperative for Emergency Preparedness -->
         <div class="slide" id="slide-2">
             <h2>The Imperative for Emergency Preparedness</h2>
             
@@ -955,7 +942,6 @@ setInterval(loadRandomVideo, 6000);
             </div>
         </div>
 
-        <!-- Slide 3: Solution Overview -->
         <div class="slide" id="slide-3">
             <h2>Our VR Training Solution</h2>
             
@@ -965,34 +951,31 @@ setInterval(loadRandomVideo, 6000);
                     <div class="feature-card">
                         <span class="feature-icon">🏃‍♂️</span>
                         <ul style="text-align: left;">
-                            <li><strong>Target Users:</strong> All employees (200+ workers)</li>
-                            <li><strong>Scenario:</strong> Factory fire with multiple escape routes</li>
-                            <li><strong>Environment:</strong> Realistic facility models</li>
-                            <li><strong>Features:</strong> emergency exits with optimal routing</li>
+                            <li><strong>Target Users:</strong> All employees</li>
+                            <li><strong>Scenario:</strong> Industrial fires with multiple escape routes</li>
+                            <li><strong>Environment:</strong> Realistic facility modeling</li>
+                            <li><strong>Features:</strong> Multiple starting points & exit routes</li>
                             <li><strong>Training:</strong> Emergency stop procedures & evacuation</li>
                             <li><strong>Analytics:</strong> Real-time performance tracking</li>
                         </ul>
                     </div>
                     
-                    <!-- VR Training Screenshots with Navigation -->
                     <div class="image-carousel">
                         <div class="carousel-container">
-                    <div class="carousel-slide">
-                        <img src="assets/image1.jpeg" alt="Factory Environment" style="width: 100%; border-radius: 15px;">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/image2.jpeg" alt="Emergency Scenario" style="width: 100%; border-radius: 15px;">
-                    </div>
-                    <div class="carousel-slide">
-                        <img src="assets/image3.jpeg" alt="Evacuation Training" style="width: 100%; border-radius: 15px;">
-                    </div>
-                    </div>
+                            <div class="carousel-slide">
+                                <img src="assets/image1.jpeg" alt="Factory Environment" style="width: 100%; border-radius: 15px;">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="assets/image2.jpeg" alt="Emergency Scenario" style="width: 100%; border-radius: 15px;">
+                            </div>
+                            <div class="carousel-slide">
+                                <img src="assets/image3.jpeg" alt="Evacuation Training" style="width: 100%; border-radius: 15px;">
+                            </div>
+                        </div>
                         
-                        <!-- Navigation arrows for when images are added -->
                         <button class="carousel-nav carousel-prev" onclick="previousImage()">‹</button>
                         <button class="carousel-nav carousel-next" onclick="nextImage()">›</button>
                         
-                        <!-- Indicators for image navigation -->
                         <div class="carousel-indicators">
                             <div class="carousel-indicator active"></div>
                             <div class="carousel-indicator"></div>
@@ -1008,18 +991,16 @@ setInterval(loadRandomVideo, 6000);
                         <ul style="text-align: left;">
                             <li><strong>Target Users:</strong> Emergency Response Team (ERT)</li>
                             <li><strong>Scenario:</strong> Active fire suppression operations</li>
-                            <li><strong>Training:</strong> Fire classification (Class C & D)</li>
+                            <li><strong>Training:</strong> Fire Classification (Class A, B, C, D & K)</li>
                             <li><strong>Equipment:</strong> Proper extinguisher selection & operation</li>
                             <li><strong>Safety:</strong> Hands-on simulation without real fire risks</li>
                             <li><strong>Certification:</strong> Performance-based skill validation</li>
                         </ul>
                     </div>
                     
-                    <!-- VR Training Demo Video Placeholder -->
                     <div class="media-placeholder video-placeholder">
                         <video id="randomVideo" autoplay muted loop style="width: 100%; border-radius: 15px; max-height: 300px;">
                             <source id="videoSource" src="" type="video/mp4">
-                            <!-- Fallback for browsers that don't support video -->
                             <div class="media-placeholder-content">
                                 <span class="placeholder-icon">🎥</span>
                                 <h4>VR Training Demo</h4>
@@ -1038,7 +1019,6 @@ setInterval(loadRandomVideo, 6000);
             </div>
         </div>
 
-        <!-- Slide 4: Technology Features -->
         <div class="slide" id="slide-4">
             <h2>Advanced VR Technology Features</h2>
             
@@ -1046,19 +1026,19 @@ setInterval(loadRandomVideo, 6000);
                 <div class="feature-card">
                     <span class="feature-icon">🥽</span>
                     <h4>VR Hardware Compatibility</h4>
-                    <p>Meta Quest 2 & Quest 3 support<br>Industry-standard equipment<br>Standalone operation</p>
+                    <p>Meta Quest 3S & Quest 3 Compatible<br>Industry-standard equipment<br>Standalone operation</p>
                 </div>
                 
                 <div class="feature-card">
                     <span class="feature-icon">🌍</span>
                     <h4>Multilingual Interface</h4>
-                    <p>Global language support<br>English, Spanish, French, German, Japanese, Hindi, Arabic, Chinese<br>Audio and text localization</p>
+                    <p>Global language support<br>Multilingual Support<br>Audio and text localization</p>
                 </div>
                 
                 <div class="feature-card">
                     <span class="feature-icon">🏭</span>
                     <h4>Realistic 3D Environments</h4>
-                    <p>Photorealistic factory modeling<br>accurate facility simulation<br>Accurate safety equipment placement</p>
+                    <p>Realistic factory modeling<br>Accurate facility simulation<br>Accurate safety equipment placement</p>
                 </div>
                 
                 <div class="feature-card">
@@ -1081,7 +1061,6 @@ setInterval(loadRandomVideo, 6000);
             </div>
         </div>
 
-        <!-- Slide 5: Emergency Evacuation Details -->
         <div class="slide" id="slide-5">
             <h2>Module 1A: Emergency Evacuation Training</h2>
             
@@ -1091,8 +1070,8 @@ setInterval(loadRandomVideo, 6000);
                     <div class="process-flow" style="flex-direction: column;">
                         <div class="process-step">
                             <div class="step-circle">1</div>
-                            <h4>Random Start Position</h4>
-                            <p>5 different starting locations throughout factory</p>
+                            <h4>Multiple Start Positions</h4>
+                            <p>Various starting locations throughout facility</p>
                         </div>
                         <div class="process-step">
                             <div class="step-circle">2</div>
@@ -1116,18 +1095,18 @@ setInterval(loadRandomVideo, 6000);
                     <h3>Key Technical Features:</h3>
                     <div class="tech-specs">
                         <div class="spec-card">
-                            <div class="spec-title">Factory Layout</div>
+                            <div class="spec-title">Facility Layout</div>
                             <p>Accurate facility models with realistic machinery placement</p>
                         </div>
                         
                         <div class="spec-card">
-                            <div class="spec-title">4 Exit Routes</div>
-                            <p>Main entrance, Pinion Line, Rack Line, Emergency Exit</p>
+                            <div class="spec-title">Multiple Exit Routes</div>
+                            <p>Various emergency exits with optimal routing</p>
                         </div>
                         
                         <div class="spec-card">
                             <div class="spec-title">Fire Scenarios</div>
-                            <p>Distribution Box (Class C) or Buffing Machine (Class D) fires</p>
+                            <p>Class A, B, C, D & K fire scenarios</p>
                         </div>
                         
                         <div class="spec-card">
@@ -1155,32 +1134,94 @@ setInterval(loadRandomVideo, 6000);
             </div>
         </div>
 
-        <!-- Slide 6: Firefighting Details -->
         <div class="slide" id="slide-6">
             <h2>Module 1B: Firefighting Training</h2>
             
+            <!-- PASS Method in horizontal line -->
+            <h3>4-Step Fire Suppression Process (PASS Method):</h3>
+            <div class="process-flow">
+                <div class="process-step">
+                    <div class="step-circle">P</div>
+                    <h4>Pull the Pin</h4>
+                    <p>Remove safety pin with right hand controller trigger</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-circle">A</div>
+                    <h4>Aim at Base</h4>
+                    <p>Point nozzle at base of fire, not at flames</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-circle">S</div>
+                    <h4>Squeeze Handle</h4>
+                    <p>Use left controller to activate extinguisher spray</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-circle">S</div>
+                    <h4>Sweep Side to Side</h4>
+                    <p>Move nozzle across fire base systematically</p>
+                </div>
+            </div>
+            
+            <!-- Fire Classification with custom layout -->
+            <h3>Fire Classification (Class A, B, C, D & K):</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin: 30px 0;">
+                <div class="feature-card">
+                    <span class="feature-icon">🔥</span>
+                    <h4>Class A Fire</h4>
+                    <p><strong>Ordinary Combustibles</strong><br>Wood, paper, fabric<br>Common materials</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⛽</span>
+                    <h4>Class B Fire</h4>
+                    <p><strong>Flammable Liquids</strong><br>Gasoline, oil, grease<br>Liquid fuels</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h4>Class C Fire</h4>
+                    <p><strong>Electrical Equipment</strong><br>Live electrical hazards<br>Energized equipment</p>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; margin: 0 auto; max-width: 66%; margin-bottom: 30px;">
+                <div class="feature-card">
+                    <span class="feature-icon">⭐</span>
+                    <h4>Class D Fire</h4>
+                    <p><strong>Combustible Metals</strong><br>Magnesium, aluminum<br>Metal dust ignition</p>
+                </div>
+                
+                <div class="feature-card">
+                    <span class="feature-icon">🍳</span>
+                    <h4>Class K Fire</h4>
+                    <p><strong>Cooking Oils</strong><br>Kitchen fires<br>High-temperature oils</p>
+                </div>
+            </div>
+            
             <div class="two-column">
                 <div>
-                    <h3>Fire Classification Training:</h3>
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <span class="feature-icon">⚡</span>
-                            <h4>Class C Fire</h4>
-                            <p><strong>Electrical Equipment</strong><br>Distribution Box scenarios<br>Live electrical hazards</p>
-                        </div>
-                        
-                        <div class="feature-card">
-                            <span class="feature-icon">⭐</span>
-                            <h4>Class D Fire</h4>
-                            <p><strong>Combustible Metals</strong><br>Buffing Machine scenarios<br>Metal dust ignition</p>
-                        </div>
+                    <h3>Interactive VR Training:</h3>
+                    <div class="highlight-box">
+                        <p><strong>Dual Controller Operation:</strong> Both VR controllers required for realistic fire extinguisher operation</p>
+                        <p><strong>Performance Tracking:</strong> 30-second timer with success/failure feedback and scoring</p>
+                        <p><strong>PASS Method:</strong> Pull, Aim, Squeeze, Sweep - industry standard firefighting technique</p>
+                        <p><strong>Multiple Scenarios:</strong> Different fire types and environments for comprehensive training</p>
+                        <p><strong>Safety Protocols:</strong> Virtual safety equipment and procedures training</p>
+                        <p><strong>Progress Analytics:</strong> Detailed performance reports and skill assessment tracking</p>
                     </div>
-                    
-                    <h3>Extinguisher Training:</h3>
+                </div>
+                
+                <div>
+                    <h3>Fire Extinguisher Types:</h3>
                     <div class="tech-specs">
                         <div class="spec-card">
+                            <div class="spec-title">Water Extinguishers</div>
+                            <p>Class A fires - ordinary combustibles</p>
+                        </div>
+                        
+                        <div class="spec-card">
                             <div class="spec-title">CO2 Extinguishers</div>
-                            <p>Class B & C fires - electrical and liquid fires</p>
+                            <p>Class B & C fires - flammable liquids and electrical</p>
                         </div>
                         
                         <div class="spec-card">
@@ -1189,45 +1230,24 @@ setInterval(loadRandomVideo, 6000);
                         </div>
                         
                         <div class="spec-card">
+                            <div class="spec-title">Dry Chemical</div>
+                            <p>Class A, B & C fires - multipurpose extinguisher</p>
+                        </div>
+                        
+                        <div class="spec-card">
                             <div class="spec-title">Dry Powder</div>
-                            <p>Class A, B, C & D fires - universal application (primary use)</p>
+                            <p>Class D fires - combustible metals</p>
                         </div>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3>4-Step Fire Suppression Process:</h3>
-                    <div class="process-flow" style="flex-direction: column;">
-                        <div class="process-step">
-                            <div class="step-circle">P</div>
-                            <h4>Pull the Pin</h4>
-                            <p>Remove safety pin with right hand controller trigger</p>
+                        
+                        <div class="spec-card">
+                            <div class="spec-title">Wet Chemical</div>
+                            <p>Class K fires - cooking oils and fats</p>
                         </div>
-                        <div class="process-step">
-                            <div class="step-circle">A</div>
-                            <h4>Aim at Base</h4>
-                            <p>Point nozzle at base of fire, not at flames</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-circle">S</div>
-                            <h4>Squeeze Handle</h4>
-                            <p>Use left controller to activate extinguisher spray</p>
-                        </div>
-                        <div class="process-step">
-                            <div class="step-circle">S</div>
-                            <h4>Sweep Side to Side</h4>
-                            <p>Move nozzle across fire base systematically</p>
-                        </div>
-                    </div>
-                    
-                    <div class="highlight-box">
-                        <h4>Interactive VR Training:</h4>
-                        <p><strong>Dual Controller Operation:</strong> Both VR controllers required for realistic fire extinguisher operation</p>
-                        <p><strong>Performance Tracking:</strong> 30-second timer with success/failure feedback and scoring</p>
-                        <p><strong>PASS Method:</strong> Pull, Aim, Squeeze, Sweep - industry standard firefighting technique</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 7: Measurable Benefits -->
+    </div>
+</body>
+</html>
