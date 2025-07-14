@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VR Safety Training - Enterprise Presentation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,7 +13,7 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #0c1426 0%, #1a2332 50%, #2d3748 100%);
             color: white;
             overflow-x: hidden;
@@ -100,23 +101,26 @@
             border-bottom: 3px solid #4ecdc4;
             padding-bottom: 15px;
             text-align: center;
+            line-height: 1.2;
         }
         
         h3 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             margin-bottom: 1.5rem;
             color: #ff6b6b;
+            line-height: 1.3;
         }
         
         h4 {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
             margin-bottom: 1rem;
             color: #ffd93d;
+            line-height: 1.4;
         }
         
         p, li {
             font-size: 1.2rem;
-            line-height: 1.8;
+            line-height: 1.7;
             margin-bottom: 1rem;
         }
         
@@ -182,7 +186,7 @@
         
         .feature-card {
             background: rgba(255,255,255,0.1);
-            padding: 30px;
+            padding: 35px;
             border-radius: 15px;
             text-align: center;
             backdrop-filter: blur(10px);
@@ -205,10 +209,11 @@
         .highlight-box {
             background: rgba(255,255,255,0.1);
             border-left: 5px solid #4ecdc4;
-            padding: 25px;
+            padding: 30px;
             margin: 25px 0;
             border-radius: 10px;
             backdrop-filter: blur(10px);
+            line-height: 1.6;
         }
         
         .customization-box {
@@ -302,9 +307,10 @@
         
         .spec-card {
             background: rgba(255,255,255,0.1);
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             border-left: 4px solid #4ecdc4;
+            line-height: 1.6;
         }
         
         .spec-title {
@@ -405,9 +411,10 @@
         .compliance-card {
             background: rgba(78,205,196,0.2);
             border: 2px solid #4ecdc4;
-            padding: 20px;
+            padding: 25px;
             border-radius: 10px;
             text-align: center;
+            line-height: 1.6;
         }
         
         .hardware-showcase {
@@ -446,27 +453,60 @@
         
         @media (max-width: 768px) {
             .slide {
-                padding: 40px 20px;
+                padding: 30px 15px;
             }
             
             h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
+                line-height: 1.2;
             }
             
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+                line-height: 1.3;
+            }
+            
+            h3 {
+                font-size: 1.5rem;
+                line-height: 1.4;
+            }
+            
+            h4 {
+                font-size: 1.3rem;
+                line-height: 1.4;
+            }
+            
+            p, li {
+                font-size: 1.1rem;
+                line-height: 1.6;
+            }
+            
+            .feature-card {
+                padding: 25px 20px;
+            }
+            
+            .highlight-box {
+                padding: 20px;
+                margin: 20px 0;
+            }
+            
+            .spec-card {
+                padding: 20px;
             }
             
             .two-column {
                 grid-template-columns: 1fr;
+                gap: 30px;
             }
             
             .hero-stats {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
             }
             
             .process-flow {
                 flex-direction: column;
+                gap: 20px;
             }
             
             .process-step::after {
@@ -572,8 +612,8 @@
             
             <div class="compliance-grid">
                 <div class="compliance-card">
-                    <h4>✅ Global Standards</h4>
-                    <p> International safety training compliance</p>
+                    <h4>✅ OSHA 1910.38 Compliant</h4>
+                    <p>Emergency Action Plans</p>
                 </div>
                 <div class="compliance-card">
                     <h4>✅ NFPA Standards</h4>
@@ -794,7 +834,6 @@
                         </ul>
                     </div>
                 </div>
-                
                 
             </div>
         </div>
